@@ -66,7 +66,6 @@ hl.on("hyprland.start", function ()
     hl.exec_cmd("~/.config/hypr/scripts/gradient-border.sh")
     hl.exec_cmd("waybar")
     hl.exec_cmd("swaync")
-    hl.exec_cmd("~/jarvis/jarvis.sh")
 end)
 
 
@@ -264,9 +263,6 @@ hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd(terminal))
 local closeWindowBind = hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 -- closeWindowBind:set_enabled(false)
 
--- Джарвис: SUPER+J — показать/скрыть окно, SUPER+SHIFT+J — слушать без слова-активатора
-hl.bind(mainMod .. " + J", hl.dsp.exec_cmd("~/jarvis/jarvis.sh toggle"))
-hl.bind(mainMod .. " + SHIFT + J", hl.dsp.exec_cmd("~/jarvis/jarvis.sh listen"))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("google-chrome-stable"))
 hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
@@ -355,14 +351,6 @@ hl.window_rule({
 --     no_anim = true,
 -- })
 -- overlayLayerRule:set_enabled(false)
-
--- Джарвис: размытие фона под полупрозрачным окном
-hl.layer_rule({
-    name  = "jarvis-blur",
-    match = { namespace = "^jarvis$" },
-    blur = true,
-    ignore_alpha = 0.2,
-})
 
 -- Hyprland-run windowrule
 hl.window_rule({
