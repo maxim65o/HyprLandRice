@@ -1,0 +1,112 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 46,
+  "margin-top": 6,
+  "margin-left": 16,
+  "margin-right": 16,
+  "spacing": 10,
+  "reload_style_on_change": true,
+  "modules-left": [
+    "custom/launcher",
+    "hyprland/workspaces"
+  ],
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "tray",
+    "custom/layout",
+    "pulseaudio",
+    "network",
+    "custom/notify",
+    "custom/power"
+  ],
+  "custom/launcher": {
+    "format": "\udb82\udcc7",
+    "tooltip-format": "\u041f\u0440\u0438\u043b\u043e\u0436\u0435\u043d\u0438\u044f",
+    "on-click": "pkill -x rofi || rofi -show drun"
+  },
+  "hyprland/workspaces": {
+    "format": "{name}",
+    "all-outputs": true,
+    "persistent-workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": []
+    },
+    "on-scroll-up": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e-1\" })'",
+    "on-scroll-down": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e+1\" })'"
+  },
+  "clock": {
+    "format": "{:%H:%M}",
+    "format-alt": "{:%A, %d %B}",
+    "tooltip-format": "<tt>{calendar}</tt>",
+    "calendar": {
+      "mode": "month",
+      "format": {
+        "months": "<span color='#ffffff'><b>{}</b></span>",
+        "weekdays": "<span color='#8a8a8a'>{}</span>",
+        "days": "<span color='#c8c8c8'>{}</span>",
+        "today": "<span color='#1c1c1c' bgcolor='#e8e8e8'><b> {} </b></span>"
+      }
+    }
+  },
+  "tray": {
+    "icon-size": 18,
+    "spacing": 10
+  },
+  "custom/layout": {
+    "exec": "~/.config/waybar/scripts/layout.py",
+    "return-type": "json",
+    "restart-interval": 3,
+    "on-click": "hyprctl switchxkblayout main next"
+  },
+  "pulseaudio": {
+    "format": "{icon}  {volume}%",
+    "format-muted": "\udb81\udf5f  \u0432\u044b\u043a\u043b",
+    "format-icons": {
+      "default": [
+        "\udb81\udd7f",
+        "\udb81\udd80",
+        "\udb81\udd7e"
+      ],
+      "headphone": "\udb80\udecb"
+    },
+    "scroll-step": 5,
+    "on-click": "pavucontrol",
+    "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+  },
+  "network": {
+    "format-ethernet": "\udb80\ude00",
+    "format-wifi": "\udb82\udd28",
+    "format-disconnected": "\udb82\udd2d",
+    "tooltip-format": "{ifname}  {ipaddr}\n\uf063 {bandwidthDownBytes}   \uf062 {bandwidthUpBytes}",
+    "interval": 3,
+    "on-click": "kitty -e nmtui",
+    "tooltip-format-ethernet": "\u041f\u0440\u043e\u0432\u043e\u0434\u043d\u0430\u044f \u0441\u0435\u0442\u044c\n{ifname}  {ipaddr}\n\uf063 {bandwidthDownBytes}   \uf062 {bandwidthUpBytes}",
+    "tooltip-format-wifi": "{essid}  {signalStrength}%\n{ipaddr}\n\uf063 {bandwidthDownBytes}   \uf062 {bandwidthUpBytes}"
+  },
+  "custom/notify": {
+    "tooltip": false,
+    "format": "{icon}",
+    "format-icons": {
+      "notification": "\udb80\udc9a",
+      "none": "\udb80\udc9c",
+      "dnd-notification": "\udb80\udc9b",
+      "dnd-none": "\udb80\udc9b"
+    },
+    "return-type": "json",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true
+  },
+  "custom/power": {
+    "format": "\udb81\udc25",
+    "tooltip-format": "\u041f\u0438\u0442\u0430\u043d\u0438\u0435",
+    "on-click": "wlogout -b 5 -p layer-shell"
+  }
+}

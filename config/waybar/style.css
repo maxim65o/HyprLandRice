@@ -1,0 +1,101 @@
+/* ========== Мультяшный серый ========== */
+@define-color ink     #1b1b1b;   /* обводка и тени */
+@define-color paper   #d4d4d4;   /* заливка блоков */
+@define-color paper2  #e9e9e9;   /* при наведении */
+@define-color deep    #8e8e8e;   /* неактивное */
+@define-color white   #fafafa;
+
+* {
+  font-family: "ComicShannsMono Nerd Font Propo", "ComicShannsMono Nerd Font", sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  min-height: 0;
+  border: none;
+  text-shadow: none;
+}
+
+window#waybar { background: transparent; color: @ink; }
+
+tooltip {
+  background: @paper;
+  border: 3px solid @ink;
+  border-radius: 14px;
+  box-shadow: 3px 3px 0 @ink;
+}
+tooltip label { color: @ink; padding: 4px 6px; }
+
+/* «наклейка»: толстая обводка + жёсткая тень */
+#custom-launcher, #workspaces, #clock, #tray,
+#custom-layout, #pulseaudio, #network, #custom-notify, #custom-power {
+  background: @paper;
+  color: @ink;
+  border: 3px solid @ink;
+  border-radius: 16px;
+  box-shadow: 3px 3px 0 @ink;
+  margin: 3px 3px 6px 0;
+  padding: 0 14px;
+  transition: all 0.15s ease;
+}
+
+#custom-launcher:hover, #clock:hover, #custom-layout:hover, #pulseaudio:hover,
+#network:hover, #custom-notify:hover {
+  background: @paper2;
+  box-shadow: 1px 1px 0 @ink;
+}
+
+/* логотип — круглый значок */
+#custom-launcher {
+  font-size: 20px;
+  background: @white;
+  padding: 0 13px 0 11px;
+}
+
+/* рабочие столы */
+#workspaces { padding: 0 4px; }
+#workspaces button {
+  color: @deep;
+  background: transparent;
+  border: none;
+  border-radius: 11px;
+  box-shadow: none;
+  padding: 0 9px;
+  margin: 4px 1px;
+  transition: all 0.15s ease;
+}
+#workspaces button:not(.empty) { color: @ink; }
+#workspaces button.visible {
+  background: #bcbcbc;
+}
+#workspaces button.active {
+  background: @ink;
+  color: @white;
+}
+#workspaces button:hover {
+  background: @paper2;
+  color: @ink;
+  box-shadow: none;
+  border: none;
+}
+#workspaces button.active:hover { background: #333333; color: @white; }
+#workspaces button.urgent { color: #b04a4a; }
+
+/* часы — главный блок */
+#clock {
+  background: @white;
+  font-size: 17px;
+  padding: 0 20px;
+  border-radius: 18px;
+}
+
+#tray { padding: 0 12px; }
+#tray > .needs-attention { background: @paper2; border-radius: 8px; }
+
+#network, #custom-notify { font-size: 17px; padding: 0 13px; }
+#pulseaudio.muted, #network.disconnected { color: @deep; }
+
+/* питание */
+#custom-power { font-size: 17px; padding: 0 14px 0 12px; }
+#custom-power:hover {
+  background: #e8b4b4;
+  box-shadow: 1px 1px 0 @ink;
+}

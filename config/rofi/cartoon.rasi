@@ -1,0 +1,98 @@
+/* ========== Мультяшный серый ========== */
+* {
+  ink:      #1b1b1b;
+  paper:    #d4d4d4;
+  paper2:   #e9e9e9;
+  white:    #fafafa;
+  deep:     #7a7a7a;
+
+  font:             "ComicShannsMono Nerd Font Propo Bold 13";
+  background-color: transparent;
+  text-color:       @ink;
+  margin:  0;
+  padding: 0;
+  spacing: 0;
+}
+
+window {
+  location:         center;
+  width:            760px;
+  background-color: @paper;
+  border:           3px 7px 7px 3px;     /* толстый низ/право — «рисованная» тень */
+  border-color:     @ink;
+  border-radius:    26px;
+  padding:          22px;
+}
+
+mainbox {
+  children: [ inputbar, listview ];
+  spacing:  20px;
+}
+
+/* строка поиска */
+inputbar {
+  children:         [ prompt, entry ];
+  background-color: @white;
+  border:           3px 5px 5px 3px;
+  border-color:     @ink;
+  border-radius:    18px;
+  padding:          12px 18px;
+  spacing:          14px;
+}
+prompt {
+  font:       "ComicShannsMono Nerd Font Propo Bold 17";
+  vertical-align: 0.5;
+}
+entry {
+  placeholder:        "Что запустим?";
+  placeholder-color:  @deep;
+  cursor:             text;
+  vertical-align:     0.5;
+}
+
+/* сетка программ */
+listview {
+  columns:       5;
+  lines:         3;
+  spacing:       12px;
+  fixed-height:  true;
+  fixed-columns: true;
+  scrollbar:     false;
+  cycle:         true;
+}
+
+element {
+  orientation:      vertical;
+  padding:          14px 6px 10px 6px;
+  spacing:          8px;
+  border:           3px;
+  border-color:     transparent;
+  border-radius:    18px;
+  cursor:           pointer;
+}
+element normal.normal, element alternate.normal { background-color: transparent; }
+element selected.normal {
+  background-color: @white;
+  border:           3px 5px 5px 3px;
+  border-color:     @ink;
+}
+element normal.active, element alternate.active { text-color: @ink; }
+element selected.active {
+  background-color: @white;
+  border:           3px 5px 5px 3px;
+  border-color:     @ink;
+}
+
+element-icon {
+  size:             52px;
+  horizontal-align: 0.5;
+  cursor:           inherit;
+}
+element-text {
+  horizontal-align: 0.5;
+  vertical-align:   0.5;
+  text-color:       inherit;
+  cursor:           inherit;
+}
+
+message, textbox { text-color: @ink; }
